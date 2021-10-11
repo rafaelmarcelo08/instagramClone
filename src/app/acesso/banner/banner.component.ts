@@ -1,4 +1,10 @@
-import { state, style, trigger } from '@angular/animations';
+import {
+  state,
+  style,
+  trigger,
+  transition,
+  animate
+} from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,7 +18,9 @@ import { Component, OnInit } from '@angular/core';
       })),
       state('visivel', style({
         opacity: 1
-      }))
+      })),
+      transition('escondido <=> visivel', 
+      animate('2s ease-in'))
     ])
   ]
 })
@@ -23,6 +31,10 @@ export class BannerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public toogleEstadoAnimacao(): void {
+    this.estato = this.estato === 'visivel' ? 'escondido' : 'visivel'
   }
 
 }
